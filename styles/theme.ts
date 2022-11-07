@@ -1,25 +1,25 @@
 interface themeProps {
   colors: {
     main: {
-      1: "#FFFFF0";
-      2: "#FFFFC6";
-      3: "#FFFFA6";
-      4: "#ECDD88";
-      5: "#FFE75F";
-      6: "#F6DA44";
-      7: "#CAAE19";
-      8: "#9C850C";
-      9: "#67590B";
+      m1: "#FFFFF0";
+      m2: "#FFFFC6";
+      m3: "#FFFFA6";
+      m4: "#ECDD88";
+      m5: "#FFE75F";
+      m6: "#F6DA44";
+      m7: "#CAAE19";
+      m8: "#9C850C";
+      m9: "#67590B";
     };
     Gray: {
-      1: "#FDFDFD";
-      2: "#EDEDED";
-      3: "#C2C2C2";
-      4: "#BDBDBD";
-      5: "#A7A7A7";
-      6: "#929292";
-      7: "#7C7C7C";
-      8: "#505050";
+      g1: "#FDFDFD";
+      g2: "#EDEDED";
+      g3: "#C2C2C2";
+      g4: "#BDBDBD";
+      g5: "#A7A7A7";
+      g6: "#929292";
+      g7: "#7C7C7C";
+      g8: "#505050";
     };
     Extra: {
       white: "#FFFFFF";
@@ -29,29 +29,30 @@ interface themeProps {
       red: "#CE6B55";
     };
   };
+  fonts: { en: "Noto Sans"; kr: "Noto Sans KR" };
 }
 export const theme: themeProps = {
   colors: {
     main: {
-      1: "#FFFFF0",
-      2: "#FFFFC6",
-      3: "#FFFFA6",
-      4: "#ECDD88",
-      5: "#FFE75F",
-      6: "#F6DA44",
-      7: "#CAAE19",
-      8: "#9C850C",
-      9: "#67590B",
+      m1: "#FFFFF0",
+      m2: "#FFFFC6",
+      m3: "#FFFFA6",
+      m4: "#ECDD88",
+      m5: "#FFE75F",
+      m6: "#F6DA44",
+      m7: "#CAAE19",
+      m8: "#9C850C",
+      m9: "#67590B",
     },
     Gray: {
-      1: "#FDFDFD",
-      2: "#EDEDED",
-      3: "#C2C2C2",
-      4: "#BDBDBD",
-      5: "#A7A7A7",
-      6: "#929292",
-      7: "#7C7C7C",
-      8: "#505050",
+      g1: "#FDFDFD",
+      g2: "#EDEDED",
+      g3: "#C2C2C2",
+      g4: "#BDBDBD",
+      g5: "#A7A7A7",
+      g6: "#929292",
+      g7: "#7C7C7C",
+      g8: "#505050",
     },
     Extra: {
       white: "#FFFFFF",
@@ -61,4 +62,5 @@ export const theme: themeProps = {
       red: "#CE6B55",
     },
   },
+  fonts: { en: "Noto Sans", kr: "Noto Sans KR" },
 };
