@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FC } from "react";
 import styled, { keyframes } from "styled-components";
 import { LoadingImg } from "../../image";
-const Loading: FC = () => {
+const LoadingPage: FC = () => {
   return (
     <>
       <Box>
@@ -25,7 +25,7 @@ const Loading: FC = () => {
   );
 };
 
-export default Loading;
+export default LoadingPage;
 const turn = keyframes`
   0% {
     transform: rotate(0deg);
