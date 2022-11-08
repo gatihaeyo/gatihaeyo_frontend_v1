@@ -4,6 +4,8 @@ export const GlobalStyle = createGlobalStyle`
  ${normalize} 
  html { 
     min-width: 320px;
+    margin: 0;
+    padding: 0;
 }
 * {
   margin: 0;
