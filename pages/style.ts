@@ -72,10 +72,11 @@ export const LoginBtn = styled.button`
     height: 60px;
     border-radius: 20px;
     border: none;
-    right: 426.43px;
+    right: 406.43px;
     top: 532.99px;
     :hover{
         cursor: pointer;
     }
+    box-shadow: -3px 3px 3px grey;
 `;
 

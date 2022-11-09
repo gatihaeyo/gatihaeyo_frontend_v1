@@ -14,9 +14,9 @@ import { JinxImg } from "./common/image";
 const Home: NextPage = () => {
   return (
     <>
-      <Header />
       <S.Layout>
         {/*<Loading />*/}
+        <Header />
         <S.TitleStage>
             <S.Title1>게임 같이할 </S.Title1>
             <S.Title2>친구 </S.Title2>
