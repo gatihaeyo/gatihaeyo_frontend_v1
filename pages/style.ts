@@ -8,30 +8,32 @@ export const Layout = styled.div`
 
 // Image Style
 export const ImageWrapper = styled.div`
-    position: relative;
+    display: flex;
+    justify-content: flex-end;
 `;
 
 export const ImageSubWrapper = styled.div`
-    position: absolute;
+    display: flex;
+    justify-content: flex-end;
     width: 620px;
     height: 491px;
-    right: 20.34px;
-    top: 23.31px;
     z-index: -1;
 `;
 
 // Title Style
 export const TitleStage = styled.div`
-    position: absolute;
-    top: 310px;
-    left: 240.2px;
+    display: flex;
+    justify-content: center;
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
+    margin-top: 23.31px;
 `;
 
 export const Title1 = styled.span`
+    display: flex;
+    align-items: center;
     font-family: 'NotoSansKR-Black';
     font-weight: bold;
     font-style: blod;
@@ -39,6 +41,8 @@ export const Title1 = styled.span`
 `;
 
 export const Title2 = styled.span`
+    display: flex;
+    align-items: center;
     font-family: 'NotoSansKR-Black';
     font-weight: bold;
     font-style: blod;
@@ -47,6 +51,8 @@ export const Title2 = styled.span`
 `;
 
 export const Title3 = styled.span`
+    display: flex;
+    align-items: center;
     font-family: 'NotoSansKR-Black';
     font-weight: bold;
     font-style: blod;
