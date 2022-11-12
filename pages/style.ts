@@ -21,19 +21,22 @@ export const ImageSubWrapper = styled.div`
 `;
 
 // Title Style
-export const TitleStage = styled.div`
-    display: flex;
-    justify-content: center;
+export const Page = styled.div`
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     user-select:none;
     margin-top: 23.31px;
+    position: relative ;
+`;
+
+export const TitleWrapper = styled.div`
+    position: absolute;
+    margin-top: 200px;
+    margin-left: 300px;
 `;
 
 export const Title1 = styled.span`
-    display: flex;
-    align-items: center;
     font-family: 'NotoSansKR-Black';
     font-weight: bold;
     font-style: blod;
@@ -41,8 +44,6 @@ export const Title1 = styled.span`
 `;
 
 export const Title2 = styled.span`
-    display: flex;
-    align-items: center;
     font-family: 'NotoSansKR-Black';
     font-weight: bold;
     font-style: blod;
@@ -51,8 +52,6 @@ export const Title2 = styled.span`
 `;
 
 export const Title3 = styled.span`
-    display: flex;
-    align-items: center;
     font-family: 'NotoSansKR-Black';
     font-weight: bold;
     font-style: blod;
@@ -84,5 +83,11 @@ export const LoginBtn = styled.button`
         cursor: pointer;
     }
     box-shadow: -3px 3px 3px grey;
+`;
+
+export const Contour = styled.hr`
+    width: 1720px;
+    border: 3px solid #D9D9D9;
+    margin-top: 68.21px;
 `;
 
