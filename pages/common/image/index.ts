@@ -11,3 +11,4 @@ export { default as JinxImg } from "./jinx.png";
 export { default as FireImg } from "./fire.png";
 export { default as ChatImg } from "./chat.png";
 export { default as PunchImg } from "./punch.png";
+export { default as GrayCircle } from "./graycircle.png";
