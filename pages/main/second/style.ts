@@ -39,9 +39,10 @@ export const TitleWrapper = styled.div`
 export const Title = styled.div`
     font: 700 normal 40px ${(props) => props.theme.fonts.kr};
     color: ${(props) => props.theme.colors.Extra.black};
+    margin-bottom: 20px;
 `;
 
 export const Text = styled.div`
-    font: 500 normal 32px ${(props) => props.theme.fonts.kr};
+    font: 300 normal 32px ${(props) => props.theme.fonts.kr};
     color: ${(props) => props.theme.colors.Extra.black};
 `;
