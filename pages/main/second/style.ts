@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
 export const ImageWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
+export const ImageSubWrapper = styled.div`
     width: 200px;
     height: 200px;
     margin-top: 77.01px;
@@ -19,7 +24,24 @@ export const CircleWrapper = styled.div`
     margin: 25px;
 `;
 
-export const PageWrapper = styled.div`
+export const TextWrapper = styled.div`
     display: flex;
     justify-content: center;
+`;
+
+export const TitleWrapper = styled.div`
+    width: 250px;
+    text-align: center;
+    margin-left: 135px;
+    margin-right: 135px;
+`;
+
+export const Title = styled.div`
+    font: 700 normal 40px ${(props) => props.theme.fonts.kr};
+    color: ${(props) => props.theme.colors.Extra.black};
+`;
+
+export const Text = styled.div`
+    font: 500 normal 32px ${(props) => props.theme.fonts.kr};
+    color: ${(props) => props.theme.colors.Extra.black};
 `;

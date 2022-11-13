@@ -35,8 +35,9 @@ const Home: NextPage = () => {
         </S.Page>
         <S.LoginText>로그인 후 이용해보세요!</S.LoginText>
         <S.LoginBtn>로그인</S.LoginBtn>
-        <S.Contour></S.Contour>
+        <S.Contour />
         <SecondPage />
+        <S.Contour />
       </S.Layout>
     </>
   );
