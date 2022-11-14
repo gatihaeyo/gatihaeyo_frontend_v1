@@ -17,3 +17,6 @@ export { default as GrayCircle } from "./graycircle.png";
 export { default as Oval } from "./Oval.png";
 export { default as Rectangle } from "./Rectangle.png";
 export { default as Gamers } from "./gamers.png";
+
+//Footer
+export { default as LogoWhite } from "./LogoWhite.png";
