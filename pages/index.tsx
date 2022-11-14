@@ -8,6 +8,7 @@ import ThirdPage from "./main/third";
 
 // Components
 import Header from "./common/func/header";
+import Footer from "./common/func/footer";
 
 // Styles
 import * as S from "./style";
@@ -40,6 +41,8 @@ const Home: NextPage = () => {
         <S.Contour />
         <SecondPage />
         <S.Contour />
+        <ThirdPage />
+        <Footer />
       </S.Layout>
     </>
   );

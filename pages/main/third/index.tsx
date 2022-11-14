@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import Image from "next";
+import Image from "next/image";
 
 // Styles
 import * as S from "./style";
@@ -12,7 +12,11 @@ import { Gamers } from "../../common/image";
 const ThirdPage: NextPage = () => {
     return(
         <>
-        
+        <S.ImageWrapper>
+            <Image
+                src={Oval}
+            />
+        </S.ImageWrapper>
         </>
     );
 };
