@@ -32,8 +32,8 @@ export const TextWrapper = styled.div`
 export const TitleWrapper = styled.div`
     width: 250px;
     text-align: center;
-    margin-left: 135px;
-    margin-right: 135px;
+    margin-left: 133px;
+    margin-right: 133px;
 `;
 
 export const Title = styled.div`
