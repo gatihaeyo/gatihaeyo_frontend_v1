@@ -4,7 +4,7 @@ import styled from "styled-components";
 export const ImageWrapper = styled.div`
     display: flex;
     justify-content: flex-end;
-`;
+`;  
 
 export const ImageSubWrapper = styled.div`
     display: flex;
