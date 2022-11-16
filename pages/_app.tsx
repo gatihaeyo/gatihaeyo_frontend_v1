@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   return (

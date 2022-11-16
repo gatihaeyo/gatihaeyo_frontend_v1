@@ -2,10 +2,42 @@ import Head from "next/head";
 import Image from "next/image";
 import { FC } from "react";
 
+// Styles
+import * as S from "./style";
+
+// Images
+import { LogoImg } from "../../image";
+import { BellImg } from "../../image";
+import { UserImg } from "../../image";
+
 const Header: FC = () => {
   return (
     <>
-      <div>헤더입니다.</div>
+      <S.Layout>
+            <S.Header>
+              <S.LogoWrapper>
+                <Image
+                    src={LogoImg}
+                  />
+              </S.LogoWrapper>
+              <S.CategoryStage>
+                <S.Category>Main</S.Category>
+                <S.Category>Party</S.Category>
+                <S.Category>Board</S.Category>
+                <S.Category>MyPage</S.Category>
+                <S.BellWrapper>
+                  <Image
+                    src={BellImg}
+                  />
+                </S.BellWrapper>
+                <S.UserIconWrapper>
+                  <Image
+                    src={UserImg}
+                  />
+                </S.UserIconWrapper>
+              </S.CategoryStage>
+            </S.Header>
+        </S.Layout>
     </>
   );
 };
