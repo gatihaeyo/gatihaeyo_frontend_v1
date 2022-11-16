@@ -31,6 +31,12 @@ const ThirdPage: NextPage = () => {
                     src={Oval}
                 />
             </S.ElementWrapper>
+            <S.RectangleWrapper>
+                <S.Rectangle
+                    src={Rectangle}
+                />
+            </S.RectangleWrapper>
+            
         </S.Page>
         </>
     );

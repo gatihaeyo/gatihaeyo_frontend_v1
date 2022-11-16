@@ -8,7 +8,16 @@ export const Page = styled.div`
 export const ElementWrapper = styled.div`
     margin-top: 50px;
     height: 930px;
-    z-index: -1;
+`;
+
+export const RectangleWrapper = styled.div`
+    position: absolute;
+    top: 404px;
+    left: 1523px;
+`;
+
+export const Rectangle = styled(Image)`
+    z-index: -99;
 `;
 
 export const Oval = styled(Image)`
