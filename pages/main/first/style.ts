@@ -16,10 +16,6 @@ export const ImageSubWrapper = styled.div`
 
 // Title Style
 export const Page = styled.div`
-    -webkit-user-select:none;
-    -moz-user-select:none;
-    -ms-user-select:none;
-    user-select:none;
     margin-top: 23.31px;
     position: relative ;
 `;
