@@ -14,48 +14,47 @@ const SecondPage: NextPage = () => {
     return(
         <>
         <S.ImageWrapper>
-            <S.ImageSubWrapper>
+            <S.ImageSubWrapper delay={0}>
                 <Image
                     src={FireImg}
                 />
             </S.ImageSubWrapper>
-            
-            <S.CircleWrapper>
+            <S.CircleWrapper delay={0.2}>
                 <Image
                     src={GrayCircle}
                 />
             </S.CircleWrapper>
-            <S.CircleWrapper>
+            <S.CircleWrapper delay={0.4}>
                 <Image
                     src={GrayCircle}
                 />
             </S.CircleWrapper>
-            <S.CircleWrapper>
+            <S.CircleWrapper delay={0.6}>
                 <Image
                     src={GrayCircle}
                 />
             </S.CircleWrapper>
-            <S.ImageSubWrapper>
+            <S.ImageSubWrapper delay={0.8}>
                 <Image
                     src={ChatImg}
                 />
             </S.ImageSubWrapper>
-            <S.CircleWrapper>
+            <S.CircleWrapper delay={1}>
                 <Image
                     src={GrayCircle}
                 />
             </S.CircleWrapper>
-            <S.CircleWrapper>
+            <S.CircleWrapper delay={1.2}>
                 <Image
                     src={GrayCircle}
                 />
             </S.CircleWrapper>
-            <S.CircleWrapper>
+            <S.CircleWrapper delay={1.4}>
                 <Image
                     src={GrayCircle}
                 />
             </S.CircleWrapper>
-            <S.ImageSubWrapper>
+            <S.ImageSubWrapper delay={1.6}>
                 <Image
                     src={PunchImg}
                 />
