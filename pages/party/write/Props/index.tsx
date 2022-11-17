@@ -1,16 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { state } from "../../common/types";
 import Image from "next/image";
-const ItemComponent: FC<state> = ({ state, props, func, index }) => {
+const ItemComponentWrite: FC<any> = ({ props }) => {
   return (
     <>
-      <Box
-        state={state}
-        onClick={() => {
-          func(index, props.name);
-        }}
-      >
+      <Box>
         <Image src={props.image} alt="" />
         <Main>{props.name}</Main>
         <People>
@@ -20,18 +14,21 @@ const ItemComponent: FC<state> = ({ state, props, func, index }) => {
     </>
   );
 };
-export default ItemComponent;
-const Box = styled.div<{ state: boolean }>`
+export default ItemComponentWrite;
+const Box = styled.div`
   width: 150px;
   height: 200px;
-  background: ${(props) =>
-    props.state ? props.theme.colors.main.m5 : props.theme.colors.main.m2};
+  background: ${(props) => props.theme.colors.main.m2};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   margin-right: 24px;
   margin-top: 0px;
   padding-top: 24px;
   text-align: center;
+  cursor: pointer;
+  :hover {
+    background-color: ${(props) => props.theme.colors.main.m5};
+  }
 `;
 const Main = styled.div`
   position: relative;

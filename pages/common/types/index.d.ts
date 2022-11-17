@@ -17,3 +17,6 @@ export interface state {
   func: (num: number, name: string) => void;
   index: number;
 }
+export interface Props {
+  props: { title: string; max: number; now: number; name: string };
+}

@@ -22,3 +22,25 @@ export const PartyData2: partyDataProps[] = [
   { image: TvingImg, name: "티빙", max: 4, min: 2 },
   { image: DisneyImg, name: "디즈니 플러스", max: 4, min: 1 },
 ];
+export const PathData = ["lol", "overwatch", "lostArk", "valorant"];
+export const PathData2 = ["netflix", "watcha", "tving", "disney"];
+export const PartyBoard = [
+  { title: "롤 우르프 같이할 4명 구해요", max: 5, now: 2, name: "lol" },
+  { title: "롤 우르프 같이할 4명 구해요", max: 5, now: 2, name: "lol" },
+  { title: "롤 우르프 같이할 4명 구해요", max: 5, now: 2, name: "lol" },
+  { title: "롤 우르프 같이할 4명 구해요", max: 5, now: 2, name: "lol" },
+  { title: "롤 우르프 같이할 4명 구해요", max: 5, now: 2, name: "lol" },
+  { title: "롤 우르프 같이할 4명 구해요", max: 5, now: 2, name: "lol" },
+];
+export const SelectData = [
+  {
+    skill: "기본 정렬",
+  },
+  {
+    skill: "인원 순으로 정렬",
+  },
+  {
+    skill: "신규 순으로 정렬",
+  },
+];
+export const MoklokData = ["전체", "게임", "미디어"];

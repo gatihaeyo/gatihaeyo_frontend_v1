@@ -1,12 +1,21 @@
+/* eslint-disable react/jsx-key */
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
-import { PartyData, PartyData2 } from "../common/data";
+import { PartyData, PartyData2, PartyBoard, SelectData } from "../common/data";
 import React, { useState, useCallback } from "react";
 import { partyDataProps } from "../common/types";
 import ItemComponent from "./components";
+import BoardItem from "./components/item";
+import dynamic from "next/dynamic";
+import { SearchImg } from "../common/image";
+import Header from "../common/func/header";
+import Link from "next/link";
 const Party: NextPage = () => {
+  const SelectComplete = dynamic(() => import("./components/select"), {
+    ssr: false,
+  });
   const [count, setCount] = useState<number>(0);
   const [nameState, setNameState] = useState<string>("");
   const changeItemColor = (num: number, name: string) => {
@@ -15,43 +24,70 @@ const Party: NextPage = () => {
   };
   return (
     <>
-      <MainText>
-        <span>{nameState}</span>
-        <br />
-        파티 목록 입니다.
-        <br />
-        원하는 파티를 찾아보세요!
-      </MainText>
-      <Category>
-        <TextDiv>다른 게임의 파티를 구하고 싶다면?</TextDiv>
-        {PartyData.map((item: partyDataProps, i: number) => (
-          <>
-            <li>
-              <ItemComponent
-                state={i === count}
-                props={item}
-                func={changeItemColor}
-                index={i}
-              ></ItemComponent>
-            </li>
-          </>
-        ))}
-        <TextDiv>스트리밍 사이트를 같이 이용할 사람을 찾고 싶다면?</TextDiv>
-        {PartyData2.map((item: partyDataProps, i: number) => (
-          <>
-            <li>
-              <ItemComponent
-                state={i + 4 === count}
-                props={item}
-                func={changeItemColor}
-                index={i + 4}
-              ></ItemComponent>
-            </li>
-          </>
-        ))}
-        <TextDiv>자신만의 파티를 만들어보세요!</TextDiv>
-        <Button>파티만들기</Button>
-      </Category>
+      <Header />
+      <Ul>
+        <Li>
+          <MainText>
+            <span>{nameState}</span>
+            <br />
+            파티 목록 입니다.
+            <br />
+            원하는 파티를 찾아보세요!
+          </MainText>
+          <Category>
+            <TextDiv>다른 게임의 파티를 구하고 싶다면?</TextDiv>
+            {PartyData.map((item: partyDataProps, i: number) => (
+              <>
+                <li>
+                  <ItemComponent
+                    state={i === count}
+                    props={item}
+                    func={changeItemColor}
+                    index={i}
+                  ></ItemComponent>
+                </li>
+              </>
+            ))}
+            <TextDiv>스트리밍 사이트를 같이 이용할 사람을 찾고 싶다면?</TextDiv>
+            {PartyData2.map((item: partyDataProps, i: number) => (
+              <>
+                <li>
+                  <ItemComponent
+                    state={i + 4 === count}
+                    props={item}
+                    func={changeItemColor}
+                    index={i + 4}
+                  ></ItemComponent>
+                </li>
+              </>
+            ))}
+            <TextDiv>자신만의 파티를 만들어보세요!</TextDiv>
+            <Link href="/party/write">
+              <Button>파티만들기</Button>
+            </Link>
+          </Category>
+        </Li>
+        <Li>
+          <Search
+            type={"text"}
+            placeholder="검색할 파티의 이름을 입력하세요."
+          />
+          <Locate2>
+            <Image src={SearchImg} alt=""></Image>
+          </Locate2>
+
+          <Locate>
+            <SelectComplete Data={SelectData} />
+          </Locate>
+          <BoxUl>
+            {PartyBoard.map((item) => (
+              <BoxLi>
+                <BoardItem props={item} />
+              </BoxLi>
+            ))}
+          </BoxUl>
+        </Li>
+      </Ul>
     </>
   );
 };
@@ -60,7 +96,6 @@ const Category = styled.ul`
   position: relative;
   width: 700px;
   height: auto;
-  left: 103px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -86,7 +121,6 @@ const MainText = styled.div`
   width: 670px;
   height: 132px;
   line-height: 44px;
-  left: 103px;
   font: 800 normal 32px ${(props) => props.theme.fonts.kr};
   text-align: right;
   margin-bottom: 94px;
@@ -101,8 +135,49 @@ const Button = styled.div`
   left: 341px;
   text-align: center;
   padding-top: 7px;
+  cursor: pointer;
   font: 700 normal 32px ${(props) => props.theme.fonts.kr};
   color: ${(props) => props.theme.colors.Extra.white};
   background: ${(props) => props.theme.colors.main.m5};
   border-radius: 20px;
+`;
+const Ul = styled.ul`
+  display: flex;
+  list-style-type: none;
+`;
+const Li = styled.li`
+  margin-left: 109px;
+`;
+const Search = styled.input`
+  position: relative;
+  top: 60px;
+  width: 400px;
+  height: 42px;
+  border: 1px solid #000000;
+  padding-left: 15px;
+  border-radius: 20px;
+  font: 700 normal 14px ${(props) => props.theme.fonts.Kr};
+  color: ${(props) => props.theme.colors.Extra.black};
+`;
+const BoxUl = styled.ul`
+  position: relative;
+  list-style-type: none;
+`;
+const BoxLi = styled.li`
+  left: -40px;
+  margin-bottom: 10px;
+`;
+const Locate = styled.div`
+  position: relative;
+  left: 600px;
+  top: 100px;
+  margin: 0;
+  width: 200px;
+`;
+const Locate2 = styled.div`
+  left: 450px;
+  position: relative;
+  top: 15px;
+  width: 50px;
+  margin: 0;
 `;
