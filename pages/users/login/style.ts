@@ -53,6 +53,7 @@ export const Title = styled.div`
 export const UserBox = styled.div`
     display: flex;
     flex-direction: column;
+    margin-left: 30px;
 `;
 
 export const UserWrapper = styled.div`
@@ -133,7 +134,7 @@ export const BtnBox = styled.div`
 export const SubmitBtn = styled.button`
     font: 500 normal 18px ${(props) => props.theme.fonts.kr};
     color: ${(props) => props.theme.colors.Extra.white};
-    width: 500px;
+    width: 467px;
     height: 50px;
     background-color: #FFE75F;
     border: none;
