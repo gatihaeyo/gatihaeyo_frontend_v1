@@ -41,7 +41,7 @@ const Login: NextPage = () => {
                 </S.UserBox>
                 <S.ContentBox>
                     <S.PageBox>
-                        <Link href="/user/signup">
+                        <Link href="/users/signup">
                             <S.SignUp>회원가입</S.SignUp>
                         </Link>
                         <S.ResetPassword>비밀번호 재설정</S.ResetPassword>
