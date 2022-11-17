@@ -20,3 +20,13 @@ export { default as Gamers } from "./gamers.png";
 
 //Footer
 export { default as LogoWhite } from "./LogoWhite.png";
+
+//Sign Up
+export { default as SignUpImg } from "./signup.png";
+export { default as BackImg } from "./back.png";
+
+// Log In
+export { default as GreenElement } from "./element1.png";
+export { default as YellowElement } from "./element2.png";
+export { default as RedElement } from "./element3.png";
+export { default as HideImg } from "./hide.png"; 

@@ -1,5 +1,7 @@
 import type { NextPage } from "next";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 // Styles
 import * as S from "./style";
@@ -25,7 +27,9 @@ const FirstPage: NextPage = () => {
             </S.ImageWrapper>
         </S.Page>
         <S.LoginText>로그인 후 이용해보세요!</S.LoginText>
-        <S.LoginBtn>로그인</S.LoginBtn>
+        <Link href="/users/login">
+            <S.LoginBtn>로그인</S.LoginBtn>
+        </Link>
         </>
     );
 };
