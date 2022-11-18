@@ -7,7 +7,7 @@ export const Page = styled.div`
 
 export const Back = styled.div`
     padding-left: 100px;
-    padding-top: 140px;
+    padding-top: 50px;
     margin-right: 0px;
     width: 100px;
     height: 30px;
