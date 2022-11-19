@@ -30,3 +30,6 @@ export { default as GreenElement } from "./element1.png";
 export { default as YellowElement } from "./element2.png";
 export { default as RedElement } from "./element3.png";
 export { default as HideImg } from "./hide.png"; 
+
+// Change Password
+export { default as BigLogo } from "./bigLogo.png";
