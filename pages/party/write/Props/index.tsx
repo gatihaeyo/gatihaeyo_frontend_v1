@@ -38,5 +38,6 @@ const Main = styled.div`
 const People = styled.div`
   position: relative;
   font: 800 normal 16px "Noto Sans";
+  color: #7c7c7c;
   top: 30px;
 `;

@@ -3,17 +3,17 @@ import styled from "styled-components";
 import { Props } from "../../../common/types";
 import Image from "next/image";
 import { ManyPeopleImg } from "../../../common/image";
-const BoardItem: FC<Props> = ({ props }) => {
+const BoardItem: FC<any> = ({ props }) => {
   return (
     <>
       <ListBox>
         <Title>{props.title}</Title>
-        <Key>{props.name}</Key>
+        <Key>{props.category}</Key>
         <Locate>
           <Image src={ManyPeopleImg} alt=""></Image>
         </Locate>
         <Count>
-          {props.now}/{props.max}
+          {props.current_personnel}/{props.personnel}
         </Count>
       </ListBox>
     </>
@@ -43,7 +43,8 @@ const Key = styled.div`
   left: 10px;
   margin-top: 20px;
   text-align: center;
-  width: 100px;
+  width: min-content;
+  padding: 0 15px;
   height: 20px;
   background: #ffe75f;
   font-family: "Noto Sans";

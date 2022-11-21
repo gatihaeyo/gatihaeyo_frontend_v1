@@ -1,16 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
+  reactStrictMode: false,
+  async rewrites() {
+    return [
+      {
+        source: "/:path*",
+        destination: `http://43.200.33.226:8080/:path*`,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 });
-
 module.exports = withBundleAnalyzer({
-  target: "serverless",
   env: {
     BASE_URL: process.env.BASE_URL,
   },

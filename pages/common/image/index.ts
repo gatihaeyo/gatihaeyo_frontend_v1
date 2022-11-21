@@ -31,3 +31,15 @@ export { default as LogoWhite } from "./LogoWhite.png";
 //party
 export { default as SearchImg } from "./image 113.png";
 export { default as ManyPeopleImg } from "./image 61.png";
+export { default as PartyAddImg } from "./image 103.png";
+export { default as UserProfile } from "./image 138.png";
+export { default as ReportImg } from "./image 150.png";
+export { default as CrownImg } from "./crown.png";
+//Sign Up
+export { default as BackImg } from "./back.png";
+
+// Log In
+export { default as GreenElement } from "./element1.png";
+export { default as YellowElement } from "./element2.png";
+export { default as RedElement } from "./element3.png";
+export { default as HideImg } from "./hide.png";

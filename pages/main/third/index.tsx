@@ -36,7 +36,6 @@ const ThirdPage: NextPage = () => {
                     src={Rectangle}
                 />
             </S.RectangleWrapper>
-            
         </S.Page>
         </>
     );

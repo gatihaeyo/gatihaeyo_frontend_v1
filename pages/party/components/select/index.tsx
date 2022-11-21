@@ -1,12 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import React, { useState, useEffect } from "react";
-const SelectComplete = ({ Data }: any) => {
+const SelectComplete = ({ Data, func }: any) => {
   console.log(Data);
   const [state, setState] = useState<boolean>(false);
-  const [write, setWrite] = useState("기본 정렬");
-  const AddValuePropsFunc = (props: any) => {
+  const [write, setWrite] = useState("시간 순으로 정렬");
+  const AddValuePropsFunc = (props: string, order: string) => {
     setWrite(props);
     setState(false);
+    func(order);
   };
   useEffect(() => {
     document.addEventListener("click", () => {
@@ -29,9 +30,9 @@ const SelectComplete = ({ Data }: any) => {
       </InputProps>
       <DataList state={state}>
         <ul>
-          {Data.map((user: any) => (
+          {Data.map((user: { skill: string; order: string }) => (
             // eslint-disable-next-line react/jsx-key
-            <li onMouseDown={() => AddValuePropsFunc(user.skill)}>
+            <li onMouseDown={() => AddValuePropsFunc(user.skill, user.order)}>
               {user.skill}
             </li>
           ))}

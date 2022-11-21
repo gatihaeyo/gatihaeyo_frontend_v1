@@ -3,13 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import Header from "../../common/func/header";
-import {
-  MoklokData,
-  PartyData,
-  PartyData2,
-  PathData,
-  PathData2,
-} from "../../common/data";
+import { MoklokData, PartyData, PartyData2 } from "../../common/data";
 import React, { useState, useCallback } from "react";
 import ItemComponentWrite from "./Props";
 import Link from "next/link";
@@ -42,10 +36,10 @@ const PartyWrite: NextPage = () => {
               <>
                 <Link
                   href={{
-                    pathname: `/party/write/${PathData[i]}`,
+                    pathname: `/party/write/${item.category}`,
                     query: { ...item, state: false },
                   }}
-                  as={`/party/write/${PathData[i]}`}
+                  as={`/party/write/${item.category}`}
                 >
                   <li>
                     <ItemComponentWrite props={item} />
@@ -63,10 +57,10 @@ const PartyWrite: NextPage = () => {
               <>
                 <Link
                   href={{
-                    pathname: `/party/write/${PathData2[i]}`,
+                    pathname: `/party/write/${item.category}`,
                     query: { ...item, state: true },
                   }}
-                  as={`/party/write/${PathData2[i]}`}
+                  as={`/party/write/${item.category}`}
                 >
                   <li>
                     <ItemComponentWrite props={item} />
@@ -141,6 +135,5 @@ const Category = styled.ul`
   li {
     position: relative;
     margin-bottom: 20px;
-    left: -40px;
   }
 `;

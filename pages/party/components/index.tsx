@@ -8,7 +8,7 @@ const ItemComponent: FC<state> = ({ state, props, func, index }) => {
       <Box
         state={state}
         onClick={() => {
-          func(index, props.name);
+          func(index, props.name, props.category);
         }}
       >
         <Image src={props.image} alt="" />
@@ -42,4 +42,5 @@ const People = styled.div`
   position: relative;
   font: 800 normal 16px "Noto Sans";
   top: 30px;
+  color: #7c7c7c;
 `;

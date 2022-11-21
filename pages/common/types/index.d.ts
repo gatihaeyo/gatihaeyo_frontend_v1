@@ -10,11 +10,12 @@ export interface partyDataProps {
   name: string;
   max: number;
   min: number;
+  category: string;
 }
 export interface state {
   state: boolean;
   props: partyDataProps;
-  func: (num: number, name: string) => void;
+  func: (num: number, name: string, category: string) => void;
   index: number;
 }
 export interface Props {

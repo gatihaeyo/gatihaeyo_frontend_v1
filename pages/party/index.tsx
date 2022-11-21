@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-key */
 import type { NextPage } from "next";
-import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import { PartyData, PartyData2, PartyBoard, SelectData } from "../common/data";
@@ -12,82 +11,137 @@ import dynamic from "next/dynamic";
 import { SearchImg } from "../common/image";
 import Header from "../common/func/header";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import { getPartyData } from "../common/request";
+import LoadingPage from "../common/status/loading";
+import ErrorPage from "../common/status/error";
+import DetailPartyInfo from "./detail";
 const Party: NextPage = () => {
   const SelectComplete = dynamic(() => import("./components/select"), {
     ssr: false,
   });
   const [count, setCount] = useState<number>(0);
-  const [nameState, setNameState] = useState<string>("");
-  const changeItemColor = (num: number, name: string) => {
-    setCount(num);
-    setNameState(name);
-  };
+  const [nameState, setNameState] = useState<string>("리그오브레전드");
+  const [categoryState, setCategoryState] = useState<string>("LEAGUEOFLEGEND");
+  const [state, setState] = useState<string>("RECENT");
+  const [idState, setIdState] = useState<string>("");
+  const [detailState, setDetailState] = useState<boolean>(false);
+  const changeItemColor = useCallback(
+    (num: number, name: string, category: string) => {
+      setCount(num);
+      setNameState(name);
+      setCategoryState(category);
+    },
+    []
+  );
+  const changeOrderProps = useCallback((order: string) => {
+    setState(order);
+  }, []);
+  const { status, data } = useQuery(["newparty", categoryState, state], () =>
+    getPartyData(categoryState, state)
+  );
+  const closeDetailInfo = useCallback(() => {
+    setDetailState(false);
+  }, []);
+  const userDatailInfo = useCallback((id: string) => {
+    setIdState(id);
+    setDetailState(true);
+  }, []);
+  if (data) {
+    console.log(data.list);
+  }
   return (
     <>
-      <Header />
-      <Ul>
-        <Li>
-          <MainText>
-            <span>{nameState}</span>
-            <br />
-            파티 목록 입니다.
-            <br />
-            원하는 파티를 찾아보세요!
-          </MainText>
-          <Category>
-            <TextDiv>다른 게임의 파티를 구하고 싶다면?</TextDiv>
-            {PartyData.map((item: partyDataProps, i: number) => (
-              <>
-                <li>
-                  <ItemComponent
-                    state={i === count}
-                    props={item}
-                    func={changeItemColor}
-                    index={i}
-                  ></ItemComponent>
-                </li>
-              </>
-            ))}
-            <TextDiv>스트리밍 사이트를 같이 이용할 사람을 찾고 싶다면?</TextDiv>
-            {PartyData2.map((item: partyDataProps, i: number) => (
-              <>
-                <li>
-                  <ItemComponent
-                    state={i + 4 === count}
-                    props={item}
-                    func={changeItemColor}
-                    index={i + 4}
-                  ></ItemComponent>
-                </li>
-              </>
-            ))}
-            <TextDiv>자신만의 파티를 만들어보세요!</TextDiv>
-            <Link href="/party/write">
-              <Button>파티만들기</Button>
-            </Link>
-          </Category>
-        </Li>
-        <Li>
-          <Search
-            type={"text"}
-            placeholder="검색할 파티의 이름을 입력하세요."
-          />
-          <Locate2>
-            <Image src={SearchImg} alt=""></Image>
-          </Locate2>
+      {status === "loading" ? (
+        <LoadingPage />
+      ) : status === "error" ? (
+        <ErrorPage
+          error={{
+            status: "",
+            data: "",
+          }}
+        />
+      ) : (
+        <>
+          <Header />
 
-          <Locate>
-            <SelectComplete Data={SelectData} />
-          </Locate>
-          <BoxUl>
-            {PartyBoard.map((item) => (
-              <BoxLi>
-                <BoardItem props={item} />
-              </BoxLi>
-            ))}
-          </BoxUl>
-        </Li>
-      </Ul>
+          <Ul>
+            {detailState ? (
+              <>
+                <Li>
+                  <DetailPartyInfo id={idState} func={closeDetailInfo} />
+                </Li>
+              </>
+            ) : (
+              <>
+                <Li>
+                  <MainText>
+                    <span>{nameState}</span>
+                    <br />
+                    파티 목록 입니다.
+                    <br />
+                    원하는 파티를 찾아보세요!
+                  </MainText>
+                  <Category>
+                    <TextDiv>다른 게임의 파티를 구하고 싶다면?</TextDiv>
+                    {PartyData.map((item: partyDataProps, i: number) => (
+                      <>
+                        <li>
+                          <ItemComponent
+                            state={i === count}
+                            props={item}
+                            func={changeItemColor}
+                            index={i}
+                          ></ItemComponent>
+                        </li>
+                      </>
+                    ))}
+                    <TextDiv>
+                      스트리밍 사이트를 같이 이용할 사람을 찾고 싶다면?
+                    </TextDiv>
+                    {PartyData2.map((item: partyDataProps, i: number) => (
+                      <>
+                        <li>
+                          <ItemComponent
+                            state={i + 4 === count}
+                            props={item}
+                            func={changeItemColor}
+                            index={i + 4}
+                          ></ItemComponent>
+                        </li>
+                      </>
+                    ))}
+                    <TextDiv>자신만의 파티를 만들어보세요!</TextDiv>
+                    <Link href="/party/write">
+                      <Button>파티만들기</Button>
+                    </Link>
+                  </Category>
+                </Li>
+              </>
+            )}
+            <Li>
+              <Search
+                type={"text"}
+                placeholder="검색할 파티의 이름을 입력하세요."
+              />
+              <Locate2>
+                <Image src={SearchImg} alt=""></Image>
+              </Locate2>
+
+              <Locate>
+                <SelectComplete Data={SelectData} func={changeOrderProps} />
+              </Locate>
+              <BoxUl>
+                {data.list.map((item: any) => (
+                  <BoxLi onClick={() => userDatailInfo(item.id)}>
+                    <BoardItem props={item} />
+                  </BoxLi>
+                ))}
+              </BoxUl>
+            </Li>
+          </Ul>
+        </>
+      )}
     </>
   );
 };
@@ -170,7 +224,7 @@ const BoxLi = styled.li`
 const Locate = styled.div`
   position: relative;
   left: 600px;
-  top: 100px;
+  top: 40px;
   margin: 0;
   width: 200px;
 `;
