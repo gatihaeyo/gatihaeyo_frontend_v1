@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import Router from "next/router";
 import axios from "axios";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 // Styles
 import * as S from "./style";
@@ -20,7 +22,7 @@ const SignUp: NextPage = () => {
     const [passwordCheck, setPasswordCheck] = useState('')
     const [passwordError, setPasswordError] = useState(false)
 
-    const onChangePasswordChk = () => {
+    const PasswordChk = () => {
         if(password !== passwordCheck){
             return setPasswordError(true);
         }
@@ -35,6 +37,22 @@ const SignUp: NextPage = () => {
         })
         .then(res => {
             console.log(res);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                icon: 'success',
+                title: '회원가입이 완료되었습니다.'
+            })
+            Router.push("/users/login");
         })
         .catch(err => {
             console.log(err);
@@ -47,6 +65,21 @@ const SignUp: NextPage = () => {
         })
         .then(res => {
             console.log(res);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                icon: 'success',
+                title: '인증코드가 전송되었습니다.'
+            })
         })
         .catch(err => {
             console.log(err);
@@ -60,9 +93,39 @@ const SignUp: NextPage = () => {
         })
         .then(res => {
             console.log(res);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                icon: 'success',
+                title: '이메일 인증이 정상적으로 완료되었습니다.'
+            })
         })
         .catch(err => {
             console.log(err);
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+                Toast.fire({
+                icon: 'error',
+                title: '인증 코드가 올바르지 않습니다.'
+            })
         })
     }
 
