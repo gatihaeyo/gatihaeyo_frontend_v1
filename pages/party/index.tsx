@@ -47,9 +47,6 @@ const Party: NextPage = () => {
     setIdState(id);
     setDetailState(true);
   }, []);
-  if (data) {
-    console.log(data.list);
-  }
   return (
     <>
       {status === "loading" ? (

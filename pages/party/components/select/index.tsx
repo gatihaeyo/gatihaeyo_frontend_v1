@@ -1,7 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import React, { useState, useEffect } from "react";
 const SelectComplete = ({ Data, func }: any) => {
-  console.log(Data);
   const [state, setState] = useState<boolean>(false);
   const [write, setWrite] = useState("시간 순으로 정렬");
   const AddValuePropsFunc = (props: string, order: string) => {

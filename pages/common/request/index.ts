@@ -2,7 +2,7 @@ import { Category } from "./../func/header/style";
 import axios from "axios";
 export {};
 const token =
-  "eyJKV1QiOiJBQ0NFU1NfVE9LRU4iLCJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiMmIxMDBjOS0zMThkLTRiNjgtYjVjZC0xZGQzZWU3M2ViMzYiLCJBVVRIT1JJVFkiOiJST0xFX1VTRVIiLCJpYXQiOjE2Njg5ODU2NjgsImV4cCI6MTY2OTAwMzY2OH0.8CQHeirkdC-eG1zPXGAUOaa6i0awATEmUr9c7LJLTcdhZFVcyQPMB1jVi0GZGrYFsh-NH59j9uj2H-6oyErjXg";
+  "eyJKV1QiOiJBQ0NFU1NfVE9LRU4iLCJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiMmIxMDBjOS0zMThkLTRiNjgtYjVjZC0xZGQzZWU3M2ViMzYiLCJBVVRIT1JJVFkiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjkxNTkwMjEsImV4cCI6MTY2OTE3NzAyMX0.f2_whGhdqKj3kLZcBRsWY06p4SEyeQXOQKliQH8f4jMLIN0L3WWtdbWYA1tw9MPRD3kexF0Lrl_oIfcNHPkTjg";
 export const getPartyData = async (category: string, state: string) => {
   const { data } = await axios({
     method: "get",
@@ -14,10 +14,9 @@ export const getPartyData = async (category: string, state: string) => {
       page: 1,
     },
   });
-  console.log(data);
   return data;
 };
-export const getShowDetailInfo = async (id: string) => {
+export const getShowDetailInfo = async (id: string | undefined | string[]) => {
   let data;
   await axios
     .all([
@@ -32,6 +31,7 @@ export const getShowDetailInfo = async (id: string) => {
     ])
     .then(
       axios.spread((res1, res2) => {
+        res1.data;
         data = [res1.data, res2.data];
       })
     );
@@ -55,7 +55,7 @@ export const requestCreateParty = async (
 ) => {
   await axios({
     method: "post",
-    url: process.env.NEXT_PUBLICK_BASE_URL + "/teams",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/teams",
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -66,4 +66,24 @@ export const requestCreateParty = async (
       personnel: personnel,
     },
   });
+};
+export const getPartyIMade = async () => {
+  const { data } = await axios({
+    method: "get",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/teams/current",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
+export const getMyInfo = async () => {
+  const { data } = await axios({
+    method: "get",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/users/info",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data.id;
 };

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { CrownImg } from "../../common/image";
 const DetailPartyInfo = ({ id, func }: any) => {
-  const { status, data } = useQuery(
+  const { status, data }: any = useQuery(
     ["showDetail", id],
     () => getShowDetailInfo(id),
     {

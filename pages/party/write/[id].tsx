@@ -7,12 +7,11 @@ import Header from "../../common/func/header";
 import Image from "next/image";
 import React, { ChangeEvent, useState } from "react";
 import { PartyAddImg } from "../../common/image";
-import { requestCreateParty } from "../../common/request";
+import { getPartyIMade, requestCreateParty } from "../../common/request";
 const PartyWrite = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const { name, max, min, state, category }: any = router.query;
-  console.log(state);
-  const [count, setCount] = useState<number>(min + 1);
+  const [count, setCount] = useState<number>(parseInt(min) + 1);
   const [text, setText] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const createPartyRecruitment = () => {
@@ -21,8 +20,11 @@ const PartyWrite = ({ params }: { params: { id: string } }) => {
     } else if (content === "") {
       window.alert("본문을 입력해주세요");
     } else {
-      requestCreateParty(text, content, category, count);
-      router.push(`../newParty/${category}`);
+      requestCreateParty(text, content, category, count).then(() => {
+        getPartyIMade().then((res) =>
+          router.push(`../newParty/${res.list[0].id}`)
+        );
+      });
     }
   };
   return (
@@ -39,9 +41,6 @@ const PartyWrite = ({ params }: { params: { id: string } }) => {
                 <div>공유할 서비스의 계정</div>
                 <input
                   type={"text"}
-                  onInput={(e: ChangeEvent<HTMLInputElement>) =>
-                    setText(e.target.value)
-                  }
                   placeholder="이용할 이메일을 입력해주세요."
                 />
               </FamilyStyle>
@@ -56,7 +55,7 @@ const PartyWrite = ({ params }: { params: { id: string } }) => {
             <input
               type={"text"}
               onInput={(e: ChangeEvent<HTMLInputElement>) =>
-                setContent(e.target.value)
+                setText(e.target.value)
               }
               placeholder="파티의 이름을 입력하세요."
             />
@@ -68,7 +67,7 @@ const PartyWrite = ({ params }: { params: { id: string } }) => {
             <div>
               <Icon
                 onClick={() => {
-                  if (count > min) {
+                  if (count > parseInt(min) + 1) {
                     setCount(count - 1);
                   }
                 }}
@@ -92,7 +91,12 @@ const PartyWrite = ({ params }: { params: { id: string } }) => {
         <Locate3>
           <FamilyStyle>
             <div>파티 설명</div>
-            <textarea placeholder="파티의 설명을 간략하게 입력하세요."></textarea>
+            <textarea
+              placeholder="파티의 설명을 간략하게 입력하세요."
+              onInput={(e: ChangeEvent<HTMLTextAreaElement>) =>
+                setContent(e.target.value)
+              }
+            ></textarea>
           </FamilyStyle>
         </Locate3>
         <SubmitButton onClick={() => createPartyRecruitment()}>
