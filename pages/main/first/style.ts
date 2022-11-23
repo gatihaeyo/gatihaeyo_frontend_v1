@@ -23,7 +23,7 @@ export const Page = styled.div`
 export const TitleWrapper = styled.div`
     position: absolute;
     margin-top: 200px;
-    margin-left: 300px;
+    margin-left: 250px;
 `;
 
 export const Title1 = styled.span`
