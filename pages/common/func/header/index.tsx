@@ -2,6 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import { FC } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
+
 // Styles
 import * as S from "./style";
 
@@ -17,7 +19,9 @@ const Header: FC = () => {
       <S.Layout>
         <S.Header>
           <S.LogoWrapper>
-            <Image src={LogoImg} />
+            <Link href="/">
+              <Image src={LogoImg} />
+            </Link>
           </S.LogoWrapper>
           <S.CategoryStage>
             <S.Category>Main</S.Category>

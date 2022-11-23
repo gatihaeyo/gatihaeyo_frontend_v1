@@ -37,6 +37,7 @@ export { default as ReportImg } from "./image 150.png";
 export { default as CrownImg } from "./crown.png";
 //Sign Up
 export { default as BackImg } from "./back.png";
+export { default as SignUpImg } from "./signup.png";
 
 // Log In
 export { default as GreenElement } from "./element1.png";
