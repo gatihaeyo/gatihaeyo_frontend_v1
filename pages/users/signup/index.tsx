@@ -166,7 +166,7 @@ const SignUp: NextPage = () => {
                     </S.UserWrapper>
                     <S.UserWrapper>
                         <S.SubTitle>비밀번호 재입력</S.SubTitle>
-                        <S.Input type={"password"} placeholder="비밀번호를 재입력해주세요." />
+                        <S.Input type={"password"} placeholder="비밀번호를 재입력해주세요." onChange={() => PasswordChk()} />
                         <S.Img>
                             <Image src={HideImg} />
                         </S.Img>
