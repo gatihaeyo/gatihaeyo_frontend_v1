@@ -20,7 +20,8 @@
     "recoil": "^0.7.6",
     "socket.io-client": "^4.5.3",
     "styled-components": "^5.3.5",
-    "styled-normalize": "^8.0.7"
+    "styled-normalize": "^8.0.7",
+    "sweetalert2": "^11.6.11"
   },
   "devDependencies": {
     "@types/node": "18.11.9",
