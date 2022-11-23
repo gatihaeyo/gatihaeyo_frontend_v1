@@ -10,7 +10,7 @@ export const Page = styled.div`
 
 export const Back = styled.div`
     padding-left: 100px;
-    padding-top: 140px;
+    padding-top: 50px;
     width: 100px;
     height: 30px;
     :hover{
@@ -64,6 +64,7 @@ export const SubTitle = styled.div`
     font: 300 normal 20px ${(props) => props.theme.fonts.kr};
     color: ${(props) => props.theme.colors.Extra.black};
     margin-bottom: 7px;
+    margin-left: 20px;
 `;
 
 export const Input = styled.input`
