@@ -20,11 +20,10 @@ const PartyWrite = ({ params }: { params: { id: string } }) => {
     } else if (content === "") {
       window.alert("본문을 입력해주세요");
     } else {
-      requestCreateParty(text, content, category, count).then(() => {
-        getPartyIMade().then((res) =>
-          router.push(`../newParty/${res.list[0].id}`)
-        );
-      });
+      setText("");
+      setContent("");
+      const { res } = requestCreateParty(text, content, category, count);
+      router.push(`../newParty/${res.id}`);
     }
   };
   return (

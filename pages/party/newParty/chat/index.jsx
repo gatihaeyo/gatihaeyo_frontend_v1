@@ -3,57 +3,50 @@ import io from "socket.io-client";
 import Image from "next/image";
 import { SendImg, UserProfile } from "../../../common/image";
 import { useQuery } from "@tanstack/react-query";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { getMyInfo } from "../../../common/request";
-import axios from "axios";
-const Chat = ({ id, title }) => {
-  const InputRef = useRef();
+import { SocketContext } from "../../../common/socket";
+const Chat = ({ id, title, name }) => {
+  const socket = useContext(SocketContext);
   const [chat, setChat] = useState([]);
   const [message, setMessage] = useState("");
   const [connectState, setConnectState] = useState(false);
-  const [messageState, setMessageState] = useState(false);
-  const { status, data } = useQuery(["getMyId", id], () => getMyInfo());
-  let socket;
-  if (data) {
-    socket = io(process.env.NEXT_PUBLIC_WEB_SOCKET, {
-      query: {
-        id: data,
-      },
-      transports: ["websocket"],
-    });
-  }
   useEffect(() => {
-    if (data) {
-      socket.on("connect", () => {
-        console.log(socket.id);
-        setConnectState(true);
-      });
-      socket.emit("join", {
-        token:
-          "eyJKV1QiOiJBQ0NFU1NfVE9LRU4iLCJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiMmIxMDBjOS0zMThkLTRiNjgtYjVjZC0xZGQzZWU3M2ViMzYiLCJBVVRIT1JJVFkiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjkxNTkwMjEsImV4cCI6MTY2OTE3NzAyMX0.f2_whGhdqKj3kLZcBRsWY06p4SEyeQXOQKliQH8f4jMLIN0L3WWtdbWYA1tw9MPRD3kexF0Lrl_oIfcNHPkTjg",
-        room_id: id,
-      });
-      socket.on("message", (data) => {
-        console.log(data);
-        chat.push({ message: data.message });
-        setChat([...chat]);
-      });
-      if (socket)
-        return () => {
-          socket.emit("leave", id);
-          socket.disconnect();
-        };
-    }
+    socket.on("message", (msg) => {
+      console.log(msg);
+      chat.push({ message: msg.message, state: true, name: "otherUser" });
+      console.log(chat);
+      setChat([...chat]);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chat, data, messageState]);
+  }, [chat]);
+  useEffect(() => {
+    socket.open();
+    socket.emit("join", id);
+    return () => {
+      console.log("socket이 끊겻어요 ㅜ");
+      setConnectState(false);
+      console.log(id);
+      socket.emit("leave", id);
+      socket.disconnect();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const requestChat = () => {
     if (message !== "") {
+      console.log(socket);
+      socket.on("connect", () => {
+        console.log("SOCKET CONNECTED!", socket.id);
+        setConnectState(true);
+      });
+      console.log(message);
+      chat.push({ message: message, state: true, name: name });
+      setChat([...chat]);
       socket.emit("send", {
-        token:
-          "eyJKV1QiOiJBQ0NFU1NfVE9LRU4iLCJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJiMmIxMDBjOS0zMThkLTRiNjgtYjVjZC0xZGQzZWU3M2ViMzYiLCJBVVRIT1JJVFkiOiJST0xFX1VTRVIiLCJpYXQiOjE2NjkxNTkwMjEsImV4cCI6MTY2OTE3NzAyMX0.f2_whGhdqKj3kLZcBRsWY06p4SEyeQXOQKliQH8f4jMLIN0L3WWtdbWYA1tw9MPRD3kexF0Lrl_oIfcNHPkTjg",
-        room_id: id,
+        roomId: id,
         message: message,
       });
+      setMessage("");
     }
   };
   return (
@@ -63,11 +56,25 @@ const Chat = ({ id, title }) => {
           <Title>{title}</Title>
         </Header>
         <Content>
-          <Image src={UserProfile} alt="" width={89} height={89} />
+          <Ul>
+            {chat.map((item) => (
+              <>
+                <Li>
+                  <CategoryImg>
+                    <Image src={UserProfile} alt="" width={89} height={89} />
+                    <div> {item.name}</div>
+                  </CategoryImg>
+
+                  <ChatTable>{item.message}</ChatTable>
+                </Li>
+              </>
+            ))}
+          </Ul>
         </Content>
         <InputBox>
           <Input
             type="text"
+            value={message}
             onChange={(e) => setMessage(e.target.value)}
             onKeyPress={(e) => {
               if (e.key === "Enter") {
@@ -105,9 +112,36 @@ const Content = styled.div`
   top: 50px;
   width: 800px;
   height: 600px;
-  background-color: red;
 `;
-const User = styled.div``;
+const Ul = styled.ul`
+  list-style: none;
+  height: 600px;
+  overflow-y: scroll;
+`;
+const Li = styled.li`
+  position: relative;
+  left: -40px;
+  display: flex;
+`;
+const Asdf = styled.div`
+  display: inline-block;
+  width: 100%;
+`;
+const ChatTable = styled.div`
+  position: relative;
+  top: 30px;
+  width: max-content;
+  height: 50px;
+  border-radius: 40px;
+  padding: 0px 20px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 50px;
+  background-color: #fff;
+  border: 1px solid #d3d3d3;
+`;
 const Button = styled.div`
   position: relative;
   top: -50px;
@@ -158,4 +192,17 @@ const Title = styled.div`
   /* identical to box height */
 
   color: #000000;
+`;
+const CategoryImg = styled.div`
+  div {
+    position: relative;
+    top: -20px;
+    left: 10px;
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 27px;
+    color: #000000;
+  }
 `;

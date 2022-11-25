@@ -90,3 +90,7 @@ export const UserDurmyData = [
   { name: "루피", tier: "골드5", winrate: "90", kda: "2.18:1", lv: 118 },
   { name: "포비", tier: "골드5", winrate: "90", kda: "2.18:1", lv: 118 },
 ];
+export const MyParty = [
+  { name: "가입한 파티", path: "/teams/current" },
+  { name: "초대된 파티", path: "/teams/invitation" },
+];

@@ -39,7 +39,7 @@ const CreateParty = () => {
                   <DefaultPartyProps data={data} func={showModal} />
                 </li>
                 <li>
-                  <Chat id={id} title={data[0].title} />
+                  <Chat id={id} title={data[0].title} name={data[2].nickname} />
                 </li>
               </Ul>
             </>

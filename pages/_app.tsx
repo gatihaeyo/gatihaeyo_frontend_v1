@@ -5,16 +5,18 @@ import React, { useState } from "react";
 import { RecoilRoot } from "recoil";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
-
+import { SocketContext, socket } from "./common/socket";
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <RecoilRoot>
-          <Component {...pageProps} />
-          <ReactQueryDevtools initialIsOpen={true}></ReactQueryDevtools>
-        </RecoilRoot>
+        <SocketContext.Provider value={socket}>
+          <RecoilRoot>
+            <Component {...pageProps} />
+            <ReactQueryDevtools initialIsOpen={true}></ReactQueryDevtools>
+          </RecoilRoot>
+        </SocketContext.Provider>
       </ThemeProvider>
     </QueryClientProvider>
   );
