@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import styled from "styled-components";
 import { PartyData, PartyData2, PartyBoard, SelectData } from "../common/data";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, ChangeEvent } from "react";
 import { partyDataProps } from "../common/types";
 import ItemComponent from "./components";
 import BoardItem from "./components/item";
@@ -26,6 +26,7 @@ const Party: NextPage = () => {
   const [state, setState] = useState<string>("RECENT");
   const [idState, setIdState] = useState<string>("");
   const [detailState, setDetailState] = useState<boolean>(false);
+  const [text, setText] = useState<string>("");
   const changeItemColor = useCallback(
     (num: number, name: string, category: string) => {
       setCount(num);
@@ -47,9 +48,6 @@ const Party: NextPage = () => {
     setIdState(id);
     setDetailState(true);
   }, []);
-  if (data) {
-    console.log(data.list);
-  }
   return (
     <>
       {status === "loading" ? (
@@ -57,8 +55,8 @@ const Party: NextPage = () => {
       ) : status === "error" ? (
         <ErrorPage
           error={{
-            status: "",
-            data: "",
+            status: "500",
+            data: "서버에러에러에러에러에러에러엘어레어",
           }}
         />
       ) : (
@@ -123,6 +121,13 @@ const Party: NextPage = () => {
               <Search
                 type={"text"}
                 placeholder="검색할 파티의 이름을 입력하세요."
+                onInput={(e: ChangeEvent<HTMLInputElement>) =>
+                  setText(e.target.value)
+                }
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                  }
+                }}
               />
               <Locate2>
                 <Image src={SearchImg} alt=""></Image>

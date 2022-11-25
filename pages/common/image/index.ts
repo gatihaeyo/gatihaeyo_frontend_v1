@@ -35,6 +35,11 @@ export { default as PartyAddImg } from "./image 103.png";
 export { default as UserProfile } from "./image 138.png";
 export { default as ReportImg } from "./image 150.png";
 export { default as CrownImg } from "./crown.png";
+export { default as SendImg } from "./image 135.png";
+export { default as GoOutImg } from "./image 144.png";
+export { default as ConfirmImg } from "./image 146.png";
+export { default as DownImg } from "./Polygon 15.png";
+export { default as UpImg } from "./Polygon 14.png";
 //Sign Up
 export { default as BackImg } from "./back.png";
 

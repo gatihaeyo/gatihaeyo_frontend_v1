@@ -2,6 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { FC } from "react";
 import { useRouter } from "next/router";
+import React from "react";
 // Styles
 import * as S from "./style";
 
@@ -22,8 +23,9 @@ const Header: FC = () => {
           <S.CategoryStage>
             <S.Category>Main</S.Category>
             <S.Category onClick={() => router.push("/party")}>Party</S.Category>
-            <S.Category>Board</S.Category>
-            <S.Category>MyPage</S.Category>
+            <S.Category onClick={() => router.push("/myparty")}>
+              Myparty
+            </S.Category>
             <S.BellWrapper>
               <Image src={BellImg} />
             </S.BellWrapper>

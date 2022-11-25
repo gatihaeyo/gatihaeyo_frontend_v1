@@ -1,65 +1,55 @@
 import styled from "styled-components";
 import Header from "../../common/func/header";
 import DefaultPartyProps from "./default";
-import { PartyData, PartyData2 } from "../../common/data";
-import { GetStaticPaths } from "next/types";
 import Chat from "./chat";
 import ErrorPage from "../../common/status/error";
-const CreateParty = ({ params }: { params: { id: string } }) => {
+import axios from "axios";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
+import { getShowDetailInfo } from "../../common/request";
+import EditUserParty from "./edit";
+const CreateParty = () => {
+  const router = useRouter();
+  const id: string | undefined | string[] = router.query.id;
+  const { status, data }: any = useQuery(["getPartymemberData", id], () =>
+    getShowDetailInfo(id)
+  );
+  const [state, setState] = useState<boolean>(false);
+  const showModal = (modal: boolean) => {
+    setState(modal);
+  };
   return (
     <>
       <Header />
-      <Ul>
-        <li>
-          <DefaultPartyProps />
-        </li>
-        <li>
-          <Chat />
-        </li>
-      </Ul>
+      {status === "loading" ? (
+        <></>
+      ) : status === "error" ? (
+        <></>
+      ) : (
+        <>
+          {state ? (
+            <>
+              <EditUserParty data={data} func={showModal} />
+            </>
+          ) : (
+            <>
+              <Ul>
+                <li>
+                  <DefaultPartyProps data={data} func={showModal} />
+                </li>
+                <li>
+                  <Chat id={id} title={data[0].title} name={data[2].nickname} />
+                </li>
+              </Ul>
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };
 export default CreateParty;
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths: {
-    params: {
-      id: string;
-    };
-  }[] = PartyData.map((item) => {
-    return {
-      params: {
-        id: item.category,
-      },
-    };
-  });
-  const paths2: {
-    params: {
-      id: string;
-    };
-  }[] = PartyData2.map((item) => {
-    return {
-      params: {
-        id: item.category,
-      },
-    };
-  });
-  return {
-    paths: [...paths, ...paths2],
-    fallback: false,
-  };
-};
-export const getStaticProps = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
-  return {
-    props: {
-      params,
-    },
-  };
-};
 const Ul = styled.ul`
   position: relative;
   display: flex;
