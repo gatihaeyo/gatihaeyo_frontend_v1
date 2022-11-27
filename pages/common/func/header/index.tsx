@@ -24,10 +24,13 @@ const Header: FC = () => {
             </Link>
           </S.LogoWrapper>
           <S.CategoryStage>
-            <S.Category>Main</S.Category>
+            <Link href="/">
+              <S.Category>Main</S.Category>
+            </Link>
             <S.Category onClick={() => router.push("/party")}>Party</S.Category>
-            <S.Category>Board</S.Category>
-            <S.Category>MyPage</S.Category>
+            <Link href="/users/game/lol">
+              <S.Category>MyPage</S.Category>
+            </Link>
             <S.BellWrapper>
               <Image src={BellImg} />
             </S.BellWrapper>
