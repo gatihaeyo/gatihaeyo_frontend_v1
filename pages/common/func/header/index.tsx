@@ -3,7 +3,6 @@ import Image from "next/image";
 import { FC } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-
 // Styles
 import * as S from "./style";
 
@@ -27,7 +26,10 @@ const Header: FC = () => {
             <Link href="/">
               <S.Category>Main</S.Category>
             </Link>
-            <S.Category onClick={() => router.push("/party")}>Party</S.Category>
+            <S.Category onClick={() => router.push("/party")}>Party</S.Category>  
+            <S.Category onClick={() => router.push("/myparty")}>
+              Myparty
+            </S.Category>
             <Link href="/users/game/lol">
               <S.Category>MyPage</S.Category>
             </Link>

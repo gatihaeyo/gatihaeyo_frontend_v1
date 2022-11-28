@@ -7,7 +7,6 @@ import { MoklokData, PartyData, PartyData2 } from "../../common/data";
 import React, { useState, useCallback } from "react";
 import ItemComponentWrite from "./Props";
 import Link from "next/link";
-import path from "path";
 import { partyDataProps } from "../../common/types";
 const PartyWrite: NextPage = () => {
   const [state, setState] = useState<number>(0);

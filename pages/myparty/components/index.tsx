@@ -1,25 +1,19 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { Props } from "../../../common/types";
 import Image from "next/image";
-import { ManyPeopleImg } from "../../../common/image";
-const BoardItem: FC<any> = ({ props }) => {
+import { ManyPeopleImg } from "../../common/image";
+const InvitedPartyItem: FC<any> = ({ props }) => {
   return (
     <>
       <ListBox>
         <Title>{props.title}</Title>
         <Key>{props.category}</Key>
-        <Locate>
-          <Image src={ManyPeopleImg} alt=""></Image>
-        </Locate>
-        <Count>
-          {props.current_personnel}/{props.personnel}
-        </Count>
+        <Locate>{props.invited_at.slice(0, 10)}</Locate>
       </ListBox>
     </>
   );
 };
-export default BoardItem;
+export default InvitedPartyItem;
 const ListBox = styled.div`
   padding-top: 20px;
   width: 800px;
@@ -60,16 +54,5 @@ const Locate = styled.div`
   top: -60px;
   left: 700px;
   width: 60px;
-`;
-const Count = styled.div`
-  position: relative;
-  left: 710px;
-  top: -60px;
-  color: ${(props) => props.theme.colors.Gray.g7};
-  font-family: "Noto Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  width: 100px;
+  font: 700 20px "Noto Sans";
 `;

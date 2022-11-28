@@ -3,26 +3,30 @@ import Image from "next/image";
 import { ManyPeopleImg, CrownImg } from "../../../common/image";
 import { UserDurmyData } from "../../../common/data";
 import UserProfileComponent from "../user";
-const DefaultPartyProps = () => {
+import { getShowDetailInfo } from "../../../common/request";
+import { useQuery } from "@tanstack/react-query";
+const DefaultPartyProps = ({ data, func }: any) => {
   return (
     <>
       <Table>
-        <Title>붕어빵에 미친 배그팟</Title>
-        <EditButton>파티 정보 수정</EditButton>
+        <Title>{data[0].title}</Title>
+        <EditButton onClick={() => func(true)}>파티 정보 수정</EditButton>
         <Locate2>
           <Locate>
             <Image src={ManyPeopleImg} alt=""></Image>
           </Locate>
-          <Peopleaccout>5/5</Peopleaccout>
+          <Peopleaccout>
+            {data[0].current_personnel}/{data[0].personnel}
+          </Peopleaccout>
           <Text>
-            리그 오브 레전드
+            {data[0].category}
             <br />
-            5인
+            {data[0].personnel}인
           </Text>
         </Locate2>
         <Asdf>
           <ul>
-            {UserDurmyData.map((item, i) => {
+            {data[1].list.map((item: any, i: number) => {
               return (
                 <>
                   <li>
@@ -123,7 +127,7 @@ const Asdf = styled.div`
     flex-wrap: wrap;
     flex-direction: row;
     gap: 20px;
-    height: 440px;
+    height: 700px;
     li {
     }
   }
