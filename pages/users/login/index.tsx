@@ -19,7 +19,6 @@ import { HideImg } from "../../common/image";
 const Login: NextPage = () => {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
-
   async function Login() {
     axios
       .post("http://43.200.33.226:8080/users/login", {
