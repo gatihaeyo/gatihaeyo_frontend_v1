@@ -17,6 +17,7 @@ export const getPartyData = async (category: string, state: string) => {
   return data;
 };
 export const getShowDetailInfo = async (id: string | undefined | string[]) => {
+  const token = sessionStorage.getItem("accessToken");
   let data;
   await axios
     .all([
@@ -45,6 +46,7 @@ export const getShowDetailInfo = async (id: string | undefined | string[]) => {
   return data;
 };
 export const requestPartyInclude = async (id: string) => {
+  const token = sessionStorage.getItem("accessToken");
   await axios({
     method: "post",
     url: process.env.NEXT_PUBLIC_BASE_URL + "/teams/participation/" + id,
@@ -53,28 +55,8 @@ export const requestPartyInclude = async (id: string) => {
     },
   });
 };
-export const requestCreateParty = (
-  title: string,
-  content: string,
-  category: string,
-  personnel: number
-) => {
-  const { data }: any = axios({
-    method: "post",
-    url: process.env.NEXT_PUBLIC_BASE_URL + "/teams",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    data: {
-      title: title,
-      content: content,
-      category: category,
-      personnel: personnel,
-    },
-  });
-  return data;
-};
 export const getPartyIMade = async () => {
+  const token = sessionStorage.getItem("accessToken");
   const { data } = await axios({
     method: "get",
     url: process.env.NEXT_PUBLIC_BASE_URL + "/teams/current",
@@ -85,6 +67,7 @@ export const getPartyIMade = async () => {
   return data;
 };
 export const getMyInfo = async () => {
+  const token = sessionStorage.getItem("accessToken");
   const { data } = await axios({
     method: "get",
     url: process.env.NEXT_PUBLIC_BASE_URL + "/users/info",
@@ -95,6 +78,7 @@ export const getMyInfo = async () => {
   return data.id;
 };
 export const newPartyList = async (id: any) => {
+  const token = sessionStorage.getItem("accessToken");
   await axios({
     method: "post",
     url: process.env.NEXT_PUBLIC_BASE_URL + "/teams/list-top" + `/${id}`,
@@ -104,6 +88,7 @@ export const newPartyList = async (id: any) => {
   });
 };
 export const deleteMember = async (team: string, user: string) => {
+  const token = sessionStorage.getItem("accessToken");
   await axios({
     method: "delete",
     url: process.env.NEXT_PUBLIC_BASE_URL + "/teams/expulsion",
@@ -119,7 +104,21 @@ export const deleteMember = async (team: string, user: string) => {
 export const SearchParty = async () => {
   await axios({});
 };
+export const ReportUser = async (id: string) => {
+  const token = sessionStorage.getItem("accessToken");
+  await axios({
+    method: "post",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/reports",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    data: {
+      user_id: id,
+    },
+  });
+};
 export const getPartyList = async (path: string) => {
+  const token = sessionStorage.getItem("accessToken");
   const { data } = await axios({
     method: "get",
     url: process.env.NEXT_PUBLIC_BASE_URL + path,
@@ -128,4 +127,16 @@ export const getPartyList = async (path: string) => {
     },
   });
   return data;
+};
+export const NickNameOn = async (category: string, name: string) => {
+  await axios({
+    method: "put",
+    url: process.env.NEXT_PUBLIC_BASE_URL + "/users/game/" + category,
+    headers: {
+      Authorization: `Bearer ${sessionStorage.getItem("accessToken")}`,
+    },
+    data: {
+      name: name,
+    },
+  });
 };

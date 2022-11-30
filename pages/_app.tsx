@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         <SocketContext.Provider value={socket}>
           <RecoilRoot>
             <Component {...pageProps} />
-            <ReactQueryDevtools initialIsOpen={true}></ReactQueryDevtools>
           </RecoilRoot>
         </SocketContext.Provider>
       </ThemeProvider>

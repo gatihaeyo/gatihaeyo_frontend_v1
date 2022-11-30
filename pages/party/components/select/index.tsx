@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 import React, { useState, useEffect } from "react";
 const SelectComplete = ({ Data, func }: any) => {
   const [state, setState] = useState<boolean>(false);
-  const [write, setWrite] = useState("시간 순으로 정렬");
+  const [write, setWrite] = useState(Data[0].skill);
   const AddValuePropsFunc = (props: string, order: string) => {
     setWrite(props);
     setState(false);
@@ -21,7 +21,7 @@ const SelectComplete = ({ Data, func }: any) => {
         state={state}
         onClick={(e) => {
           e.stopPropagation();
-          setState(true);
+          setState(!state);
         }}
       >
         {write}
@@ -55,6 +55,7 @@ const DataList = styled.div<{ state: boolean }>`
   z-index: 2;
   visibility: ${(props) => (props.state ? "visible" : "hidden")};
   padding: 0;
+
   ul {
     position: relative;
     list-style-type: none;
@@ -97,6 +98,7 @@ const InputProps = styled.div<{ width: number; state: boolean }>`
   border: none;
   background-color: ${(props) => props.theme.colors.main.m6};
   margin: 0px;
+  cursor: pointer;
 `;
 const SelectIcon = styled.div<{ state: boolean }>`
   position: absolute;

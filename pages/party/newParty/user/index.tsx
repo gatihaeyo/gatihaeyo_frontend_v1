@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { UserProfile, ReportImg } from "../../../common/image";
 import Image from "next/image";
+import { ReportUser } from "../../../common/request";
 const UserProfileComponent = ({ props }: any) => {
   console.log(props.profile_image_path);
   return (
@@ -8,14 +9,24 @@ const UserProfileComponent = ({ props }: any) => {
       <UserCard>
         <CenterLocate>
           <BlockImg>
-            <Image src={UserProfile} alt=""></Image>
+            <Image
+              src={props.profile_image_path}
+              alt=""
+              width={100}
+              height={100}
+              unoptimized={true}
+            ></Image>
           </BlockImg>
           <Flex>
             <Title>{props.nickname}</Title>
           </Flex>
         </CenterLocate>
         <Locate>
-          <Image src={ReportImg} alt=""></Image>
+          <Image
+            src={ReportImg}
+            alt=""
+            onClick={() => ReportUser(props.id)}
+          ></Image>
         </Locate>
       </UserCard>
     </>

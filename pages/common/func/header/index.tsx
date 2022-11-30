@@ -18,15 +18,11 @@ const Header: FC = () => {
       <S.Layout>
         <S.Header>
           <S.LogoWrapper>
-            <Link href="/">
-              <Image src={LogoImg} />
-            </Link>
+            <Image src={LogoImg} onClick={() => router.push("/")} />
           </S.LogoWrapper>
           <S.CategoryStage>
-            <Link href="/">
-              <S.Category>Main</S.Category>
-            </Link>
-            <S.Category onClick={() => router.push("/party")}>Party</S.Category>  
+            <S.Category onClick={() => router.push("/")}>Main</S.Category>
+            <S.Category onClick={() => router.push("/party")}>Party</S.Category>
             <S.Category onClick={() => router.push("/myparty")}>
               Myparty
             </S.Category>
@@ -37,7 +33,7 @@ const Header: FC = () => {
               <Image src={BellImg} />
             </S.BellWrapper>
             <S.UserIconWrapper>
-              <Image src={UserImg} />
+              <Image src={UserImg} onClick={() => router.push("/mypage")} />
             </S.UserIconWrapper>
           </S.CategoryStage>
         </S.Header>
