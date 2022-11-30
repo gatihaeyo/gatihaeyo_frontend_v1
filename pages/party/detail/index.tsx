@@ -11,6 +11,9 @@ const DetailPartyInfo = ({ id, func }: any) => {
       keepPreviousData: true,
     }
   );
+  if (data) {
+    console.log(data[1].list[0].profile_image_path.slice(-4));
+  }
   return (
     <>
       <Box>
@@ -35,14 +38,14 @@ const DetailPartyInfo = ({ id, func }: any) => {
                       <></>
                     )}
                     <ImgProps width={i === 0 ? 0 : 20}>
-                      {item.profile_image_path.slice(-4) ===
-                      (".jpg" || ".png" || ".svg") ? (
+                      {item.profile_image_path.slice(-4) === ".png" ? (
                         <>
                           <Image
-                            src={item?.profile_image_path}
+                            src={item.profile_image_path}
                             alt=""
                             width={100}
                             height={100}
+                            unoptimized={true}
                           ></Image>
                         </>
                       ) : (
@@ -63,7 +66,6 @@ const DetailPartyInfo = ({ id, func }: any) => {
                   })
                   .catch(() => {
                     func(false);
-                    window.alert("이미 신청한 파티입니다.");
                   })
               }
             >
@@ -105,6 +107,7 @@ const ImgProps = styled.div<{ width: number }>`
   padding: 0;
   border-radius: 50%;
   object-fit: cover;
+  overflow: hidden;
 `;
 const UserName = styled.p`
   font: 800 normal 16px "Noto Sans";

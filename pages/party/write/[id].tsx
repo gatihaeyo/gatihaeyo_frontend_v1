@@ -7,7 +7,8 @@ import Header from "../../common/func/header";
 import Image from "next/image";
 import React, { ChangeEvent, useState } from "react";
 import { PartyAddImg } from "../../common/image";
-import { getPartyIMade, requestCreateParty } from "../../common/request";
+import axios from "axios";
+import { getPartyIMade } from "../../common/request";
 const PartyWrite = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const { name, max, min, state, category }: any = router.query;
@@ -22,8 +23,23 @@ const PartyWrite = ({ params }: { params: { id: string } }) => {
     } else {
       setText("");
       setContent("");
-      const { res } = requestCreateParty(text, content, category, count);
-      router.push(`../newParty/${res.id}`);
+      const requestCreateParty = async () => {
+        const token = sessionStorage.getItem("accessToken");
+        axios({
+          method: "post",
+          url: process.env.NEXT_PUBLIC_BASE_URL + "/teams",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          data: {
+            title: text,
+            content: content,
+            category: category,
+            personnel: count,
+          },
+        }).then((res) => router.push(`../newParty/${res.data.id}`));
+      };
+      requestCreateParty();
     }
   };
   return (
