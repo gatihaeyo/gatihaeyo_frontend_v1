@@ -42,9 +42,13 @@ export { default as DownImg } from "./Polygon 15.png";
 export { default as UpImg } from "./Polygon 14.png";
 //Sign Up
 export { default as BackImg } from "./back.png";
+export { default as SignUpImg } from "./signup.png";
 
 // Log In
 export { default as GreenElement } from "./element1.png";
 export { default as YellowElement } from "./element2.png";
 export { default as RedElement } from "./element3.png";
 export { default as HideImg } from "./hide.png";
+
+// Change Password
+export { default as BigLogo } from "./biglogo.png";

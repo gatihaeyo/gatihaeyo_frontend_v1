@@ -21,6 +21,16 @@ const SignUp: NextPage = () => {
     const [password, setPassword] = useState('');
     const [passwordCheck, setPasswordCheck] = useState('')
     const [passwordError, setPasswordError] = useState(false)
+    const [passwordShown, setPasswordShown] = useState(false);
+    const [rePasswordShown, setRePasswordShown] = useState(false);
+
+    const onClickPassword = () => {
+        setPasswordShown(!passwordShown)
+    }
+    const onClickRePassword = () => {
+        setRePasswordShown(!rePasswordShown)
+    }
+
 
     const PasswordChk = () => {
         if(password !== passwordCheck){
@@ -159,15 +169,15 @@ const SignUp: NextPage = () => {
                     </S.UserWrapper>
                     <S.UserWrapper>
                         <S.SubTitle>비밀번호</S.SubTitle>
-                        <S.Input type={"password"} placeholder="비밀번호를 입력해주세요." value={password} onChange={(e)=>setPassword(e.target.value)} />
-                        <S.Img>
+                        <S.Input type={passwordShown ? "text" : "password"} placeholder="비밀번호를 입력해주세요." value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <S.Img onClick={() => onClickPassword()}>
                             <Image src={HideImg} />
                         </S.Img>
                     </S.UserWrapper>
                     <S.UserWrapper>
                         <S.SubTitle>비밀번호 재입력</S.SubTitle>
-                        <S.Input type={"password"} placeholder="비밀번호를 재입력해주세요." onChange={() => PasswordChk()} />
-                        <S.Img>
+                        <S.Input type={rePasswordShown ? "text" : "password"} placeholder="비밀번호를 재입력해주세요." onChange={() => PasswordChk()} />
+                        <S.Img onClick={() => onClickRePassword()}>
                             <Image src={HideImg} />
                         </S.Img>
                     </S.UserWrapper>

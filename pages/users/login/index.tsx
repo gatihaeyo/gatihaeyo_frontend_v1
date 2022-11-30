@@ -20,6 +20,11 @@ const Login: NextPage = () => {
 
     const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordShown, setPasswordShown] = useState(false);
+
+    const onClickPassword = () => {
+        setPasswordShown(!passwordShown);
+    }
 
     async function Login() {
         axios.post('http://43.200.33.226:8080/users/login', {
@@ -69,8 +74,8 @@ const Login: NextPage = () => {
                     </S.UserWrapper>
                     <S.UserWrapper>
                         <S.SubTitle>비밀번호</S.SubTitle>
-                        <S.Input type="password" placeholder="비밀번호를 입력해주세요." value={password} onChange={(e)=>setPassword(e.target.value)} />
-                        <S.Img>
+                        <S.Input type={passwordShown ? "text" : "password"} placeholder="비밀번호를 입력해주세요." value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <S.Img onClick={() => onClickPassword()}>
                             <Image src={HideImg} />
                         </S.Img>
                     </S.UserWrapper>
